@@ -2,16 +2,16 @@ public class Printer
 {
     public static void main(String []args)
     {
-        Printer epson = new Printer();
-        Printer canon = new Printer();
+        Printer epson = new Printer("Epson",4000,"TR20",15);
+        Printer canon = new Printer("A4","laser");
         Printer hp = new Printer();
 
         epson.printPrice();
-        canon.resetValues("Canon",500,5000,"Vasya",6,"A48","laser");
+        canon.resetValues("Canon",500,2500,"Vasya",6,"A48","laser");
         hp.printStaticDpi();
+        epson.toString();
     }
-
-
+    
     private String name;
     private int speed;
     private int price;
@@ -23,24 +23,22 @@ public class Printer
     protected String paperSize;
     protected String printTechnology;
 
-    Printer(String name)
-    {
-        this.name = name;
-        price = 2500;
-        modelName = "Pixma";
-        speed = 15;
-    }
-
     Printer()
     {
-        name = "HP";
-        speed = 50;
-        price = 3000;
-        modelName = "LaserJet";
-        amountOfColors = 5;
-        dpi = 1200;
-        paperSize = "A4";
-        printTechnology = "laser";
+    }
+
+    Printer(String name, int price, String modelName, int speed)
+    {
+        this.name = name;
+        this.price = price;
+        this.modelName = modelName;
+        this.speed = speed;
+    }
+
+    Printer(String paperSize,String printTechnology)
+    {
+        this.paperSize = paperSize;
+        this.printTechnology = printTechnology;
     }
 
     public String getName()
@@ -61,38 +59,47 @@ public class Printer
         return modelName;
     }
 
-    public void setName(String Samsung)
+    public void setName(String name)
     {
-        name = Samsung;
+        this.name = name;
     }
 
     public void setSpeed(int speed)
     {
-        speed = 200;
+        this.speed = speed;
     }
 
     public void setPrice(int price)
     {
-        price = 3500;
+        this.price = price;
     }
-    public void setModelName(String SL)
+    public void setModelName(String modelName)
     {
-        modelName = SL;
+        this.modelName = modelName;
     }
 
     public void printStaticDpi()
     {
-        System.out.println("dpi is "+dpi);
+        System.out.println("Static field dpi is "+dpi);
     }
 
     @Override
-    public String toString() {
-        return super.toString();
+    public String toString()
+    {
+        return "Printer{" +
+                "name='" + name + '\'' +
+                ", speed=" + speed +
+                ", price=" + price +
+                ", modelName='" + modelName + '\'' +
+                ", amountOfColors=" + amountOfColors +
+                ", paperSize='" + paperSize + '\'' +
+                ", printTechnology='" + printTechnology + '\'' +
+                '}';
     }
 
     public void printPrice()
     {
-        System.out.println(price);
+        System.out.println(" Epson's price is "+price);
     }
 
     public void resetValues(String name, int speed, int price, String modelName,int amountOfColors,String paperSize, String printTechnology)
